@@ -5,10 +5,8 @@ import "./game.css";
 
 const Game = () => {
   const [board, setBoard] = useState(Array(9).fill(null));
-  console.log('winner', board);
   const [xIsNext, setXIsNext] = useState(true);
   const winner = calculateWinner(board);
-  console.log('winner',winner);
 
   const handleClick = (index) => {
     const boardCopy = [...board];
@@ -26,9 +24,11 @@ const Game = () => {
 
   return (
     <div className='app container'>
-      <Board cells={board} onClick={handleClick}  winner={winner}></Board>
+      <Board cells={board} onClick={handleClick}  winner={winner} ></Board>
+
       {winner && <div className="game-winner">Winner is  {board[winner[0]]}</div>}
       {!winner && board.flat().every((cell) => cell !== null) && <p>Không có người thắng</p>}
+
       <button className="game-reset" onClick={handleResetGame}>
         Reset game
       </button>

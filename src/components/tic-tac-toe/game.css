@@ -23,7 +23,7 @@
   color: #2cccff;
 }
 .game-cell.is-win{
-  color: #6e6e6e;
+  background-color: #6e6e6e;
 }
 .game-cell.is-o {
   color: #ff6651;
