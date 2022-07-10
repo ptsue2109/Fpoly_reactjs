@@ -1,0 +1,18 @@
+{
+    "sliders": [
+        {
+            "_id": "629f29ff19ccc251410b2339",
+            "slideName": "SPY x FAMILY update",
+            "URL": "/products/spyxfamily",
+            "image": "https://theme.hstatic.net/200000343865/1000796725/14/ms_banner_img1.jpg?v=415",
+            "__v": 0
+        },
+        {
+            "_id": "62a5d17071c73d22f2a8d367",
+            "slideName": "banner2",
+            "URL": "/",
+            "image": "https://res.cloudinary.com/asm-ph13269/image/upload/v1654951376/breadcrumb_bg2_rvatam.jpg",
+            "__v": 0
+        }
+    ]
+}
