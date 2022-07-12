@@ -7,7 +7,6 @@ const Error = (props: Props) => {
 
   return (
     <div>
-      
       <section className="page_404">
         <div className="container">
           <div className="row">

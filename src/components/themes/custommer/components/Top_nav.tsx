@@ -16,8 +16,8 @@ const Top_nav = (props: Props) => {
                 </div>
                 <div className="flex-1 flex  justify-items-center align-items-center  m-2 px-5 py-3 border-round gap-3">
                     <i className="pi pi-wifi rotate-45"></i>
-                    <Marquee gradient={false}>
-                        tess
+                    <Marquee gradient={false} speed={60}>
+                        Chào mừng bạn đến với Kim Đồng Book. Nếu bạn cần giúp đỡ, hãy liên hệ với chúng tôi qua hotline: (+84) 1900571595 hoặc email: cskh_online@nxbkimdong.com.vn.
                     </Marquee>
                 </div>
                 <div className="flex-1 flex justify-items-center gap-3">

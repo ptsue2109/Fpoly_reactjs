@@ -1,31 +1,16 @@
-import { combineReducers, configureStore } from "@reduxjs/toolkit";
-import { persistReducer, persistStore } from "redux-persist";
+import { configureStore } from "@reduxjs/toolkit";
 import thunk from "redux-thunk";
-import storage from "redux-persist/lib/storage";
-
-const reducers = combineReducers({
-});
-
-const persistConfig = {
-    key: "kimdong",
-    storage,
-    whitelist: [],
-};
-
-const persistedReducer = persistReducer(persistConfig, reducers);
-
-const middlewares = [thunk];
+import rootReducer from "./rootReducer";
 
 export const store = configureStore({
-    reducer: persistedReducer,
+    reducer: rootReducer,
     middleware: (getDefaultMiddleware) =>
         getDefaultMiddleware({
             serializableCheck: false,
-        }).concat(...middlewares),
+        }).concat(thunk),
     devTools: true,
 });
 
-export const persistor = persistStore(store);
-export type AppStore = typeof store;
 export type AppDispatch = typeof store.dispatch;
 export type RootState = ReturnType<typeof store.getState>;
+export default store;
