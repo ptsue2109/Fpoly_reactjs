@@ -2,7 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Button, Table } from "antd";
 import { products } from "../../../../db.json";
-import { columnsProList } from "../../../components/admin/dataTable"
+import { columnsProList } from "../../../components/admin/dataTable";
+import { pageTitle } from '../../../ultils'
 interface DataType {
 }
 
@@ -19,13 +20,17 @@ const data: DataType[] = products.map((item, index) => {
   }
 });
 
-const ProductList: React.FC = () => (
-  <>
-    <Button type="primary" style={{ marginBottom: "20px" }}>
-      <Link to="add">Add Product</Link>
-    </Button>
-    <Table columns={columnsProList} dataSource={data} />
-  </>
-);
+const ProductList = (props: DataType) => {
 
+  React.useEffect(() => { document.title = "Admin | Products" ; pageTitle('Danh sách sản phẩm')}, []);
+
+  return (
+    <>
+      <Button type="primary" style={{ marginBottom: "20px" }}>
+        <Link to="add">Add Product</Link>
+      </Button>
+      <Table columns={columnsProList} dataSource={data} />
+    </>
+  );
+}
 export default ProductList;

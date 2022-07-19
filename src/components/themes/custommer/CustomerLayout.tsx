@@ -13,7 +13,7 @@ const CustomerLayout = (props: Props) => {
           <Outlet />
         </div>
       </div>
-      <Footer />
+      <Footer/>
     </>
   );
 };

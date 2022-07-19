@@ -1,73 +1,74 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { Rate } from "antd";
-import { CurrencyFormatter } from './../types/currentcy';
+import { Rate, Button } from "antd";
+import { currencyFm } from "../ultils";
 type Props = {};
 
 const CardProduct = ({ data }: any) => {
-  React.useEffect(() => {
-    console.log(data);
-  }, []);
+  React.useEffect(() => {}, []);
+  
   return (
     <>
-      <Products>
-        {data && data.map((item: any, index: any) => (
-          <ProductInfo key={index}>
-            <ProductItem>
-              <ProImage className="">
-                <Link to={`products/${item?.slug}`}>
-                  <img
-                    src={item?.image[0]}
-                    className="vertical-align-baseline"
-                    style={{ width: "150px", margin: '25px 0px' }}
-                  />
-                </Link>
-              </ProImage>
-              <ProductContent>
-                <div className="product__name h-15rem px-2 white-space-wrap overflow-hidden text-overflow-ellipsis">
-                  <Link to={`products/${item?.slug}`}
-                    className="text-sm text-color hover:text-red-600"
-                  >
-                    {item?.name}
-                  </Link>
-                </div>
-                <div className="block">
-                  <div className="box-info__box-price p-1">
-                    <Products className="justify-content-between px-2">
-                      <p className="product__price--show text-red-600">
-                        {CurrencyFormatter.format(item?.cost)}
-                      </p>
-                      <p className="product__price--through line-through text-700">
-                        {CurrencyFormatter.format(item?.cost)}
-                      </p>
-                    </Products>
+  
+          <div className="text-color">
+            <Products>
+              {data &&
+                data.map((item: any, index: any) => (
+                  <ProductInfo key={index}>
+                    <ProductItem>
+                      <ProImage className="">
+                        <Link to={`products/${item?.slug}`}>
+                          <img
+                            src={item?.image[0]}
+                            className="vertical-align-baseline"
+                            style={{ width: "150px", margin: "25px 0px" }}
+                          />
+                        </Link>
+                      </ProImage>
+                      <ProductContent>
+                        <div className="product__name h-15rem px-2 white-space-wrap overflow-hidden text-overflow-ellipsis">
+                          <Link
+                            to={`products/${item?.slug}`}
+                            className="text-sm text-color hover:text-red-600"
+                          >
+                            {item?.name}
+                          </Link>
+                        </div>
+                        <div className="block">
+                          <div className="box-info__box-price p-1">
+                            <Products className="justify-content-between px-2">
+                              <p className="product__price--show text-red-600">
+                                {currencyFm.format(item?.cost)}
+                              </p>
+                              <p className="product__price--through line-through text-700">
+                                {currencyFm.format(item?.cost)}
+                              </p>
+                            </Products>
 
-                    <Promo>Thu cũ đổi mới - Trợ giá đến 300.000đ </Promo>
-                    <PricePercnet>
-                      Giảm&nbsp;40%
-                    </PricePercnet>
+                            <Promo>
+                              Thu cũ đổi mới - Trợ giá đến 300.000đ{" "}
+                            </Promo>
+                            <PricePercnet>Giảm&nbsp;40%</PricePercnet>
 
-                    <ProductRating>
-                      <Rate
-                        allowHalf
-                        defaultValue={5}
-                        style={{ fontSize: "15px" }}
-                        disabled
-                      />
-                      <span>163 đánh giá</span>
-                    </ProductRating>
-                  </div>
-                </div>
-              </ProductContent>
-            </ProductItem>
-
-
-
-          </ProductInfo>
-        ))}
-      </Products>
-    </>
+                            <ProductRating>
+                              <Rate
+                                allowHalf
+                                defaultValue={5}
+                                style={{ fontSize: "15px" }}
+                                disabled
+                              />
+                              <span>163 đánh giá</span>
+                            </ProductRating>
+                          </div>
+                        </div>
+                      </ProductContent>
+                    </ProductItem>
+                  </ProductInfo>
+                ))}
+            </Products>
+          </div>
+        </>
   );
 };
 
@@ -76,7 +77,7 @@ export default CardProduct;
 const Products = styled.div`
   display: flex;
   flex-wrap: wrap;
-  gap:30px;
+  gap: 30px;
 `;
 const NormalText = styled.div`
   font-weight: 400;
@@ -109,7 +110,7 @@ const ProImage = styled(ProductAttr)`
   justify-content: center;
   margin-top: 4px;
   align-items: center;
-  height: 210px
+  height: 210px;
 `;
 
 const ProductContent = styled(ProductAttr)`
@@ -117,7 +118,7 @@ const ProductContent = styled(ProductAttr)`
   justify-content: space-around;
   font-weight: 550;
 
-  height: calc(100% - 210px)
+  height: calc(100% - 210px);
 `;
 
 const ProductRating = styled(NormalText)`

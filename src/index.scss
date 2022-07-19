@@ -78,3 +78,26 @@ code {
   border-radius: 5px;
   margin-top: 10px;
 }
+.breadcrumb_a{
+  top: 4rem;
+  width: 100%;
+  height: 2rem;
+  display: flex;
+  align-items: center;
+}
+
+.ant-tabs-nav-wrap{
+  background-color: rgb(141, 0, 0);
+}
+
+.border-round_custom{
+  border: 1px solid rgb(141, 0, 0);
+  height: 25rem;
+  color: #fff;
+}
+.ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
+  color: #f3f7fb !important;
+  &::after, &::marker, &:focus, &:active, &:hover{
+    color: #fff !important;
+ }
+}

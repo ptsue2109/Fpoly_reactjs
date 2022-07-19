@@ -2,23 +2,28 @@ import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Form, Button } from "antd";
 import ProductForm from "../../../components/admin/ProductForm";
-
-interface Props {}
+import { pageTitle } from '../../../ultils'
+interface Props { }
 
 const ProductAdd = (props: Props) => {
   const [form] = Form.useForm();
   const navigate = useNavigate();
   const [fileList, setFileList] = React.useState<any[]>([]);
+
   React.useEffect(() => {
-    document.title = "Add Product";
+    document.title = "Admin | Add Product";
+    pageTitle('Thêm sản phẩm')
   }, []);
+
   const onFinish = async (values: any) => {
     console.log("values", values);
   };
+
   const onReset = () => {
     form.resetFields();
     setFileList([]);
   };
+  
   return (
     <div>
       <Button type="primary" style={{ marginBottom: "20px" }}>

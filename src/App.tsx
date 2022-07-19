@@ -3,12 +3,8 @@ import { Navigate, Route, Routes } from "react-router-dom";
 import { ScrollTop } from "primereact/scrolltop";
 import { useAppDispatch, useAppSelector } from "./app/stores/hooks";
 
-const CustomerLayout = React.lazy(
-  () => import("./components/themes/custommer/CustomerLayout")
-);
-const AdminLayout = React.lazy(
-  () => import("./components/themes/admin/AdminLayout")
-);
+const CustomerLayout = React.lazy(() => import("./components/themes/custommer/CustomerLayout"));
+const AdminLayout = React.lazy(() => import("./components/themes/admin/AdminLayout"));
 
 const Home = React.lazy(() => import("./pages/Home"));
 const Search = React.lazy(() => import("./pages/Search"));
@@ -24,7 +20,6 @@ const Detail = React.lazy(() => import("./pages/products/Detail"));
 function App() {
   const dispatch = useAppDispatch();
   const { userInfo } = useAppSelector((state) => state.authReducer);
-  console.log("userInfo", userInfo);
 
   return (
     <div className="max-w-full overflow-x-hidden">
@@ -33,7 +28,7 @@ function App() {
         <Route path="/" element={<CustomerLayout />}>
           <Route index element={<Home/>} />
           <Route path="tim-kiem/" element={<Search />} />
-          <Route path="products/:slug"  element={<Detail/>}/>
+          <Route path="products/:slug" element={<Detail/>}/>
         </Route>
 
         <Route path="admin" element={<AdminLayout/>}>

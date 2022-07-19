@@ -1,44 +1,50 @@
 import { Link } from "react-router-dom";
-import { Space,  Tag, Button, Popconfirm } from "antd";
-
-export const columnsProList:any = [
+import { Space, Tag, Button, Popconfirm } from "antd";
+import { currencyFm } from "../../ultils";
+export const columnsProList: any = [
   {
     title: "#",
     dataIndex: "key",
     key: "index",
   },
   {
-    title: "Image",
+    title: "IMAGE",
     dataIndex: "image",
     key: "image",
     render: (_: any, record: any) => (
       <Link to={`${record?._id}/edit`}>
-        <img width="40px" src={record.image ?? ""} alt="" />
+        <img width="40px" src={record.image[0] ?? ""} alt="" />
       </Link>
     ),
   },
   {
-    title: "Product Name",
+    title: "NAME",
     dataIndex: "name",
     key: "name",
     render: (_: any, record: any) => (
       <div className="overflow-auto surface-overlay">
         <Link
-        to={`${record?._id}/edit`}
-        style={{ color: "#262626", height: "10px" }}
-      >
-        {record?.name}
-      </Link>
+          to={`${record?._id}/edit`}
+          style={{ color: "#262626", height: "10px" }}
+          className="hover:text-red-700"
+        >
+          {record?.name}
+        </Link>
       </div>
     ),
   },
   {
-    title: "cost",
+    title: "COST",
     dataIndex: "cost",
     key: "cost",
+    render: (_: any, record: any) => (
+      <>
+        {currencyFm.format(record?.cost)}
+      </>
+    ),
   },
   {
-    title: "display",
+    title: "DISPLAY",
     dataIndex: "displayPro",
     key: "displayPro",
     render: (_: any, { displayPro }: any) => (
@@ -51,7 +57,7 @@ export const columnsProList:any = [
     ),
   },
   {
-    title: "stock",
+    title: "STOCK",
     key: "stock",
     dataIndex: "stock",
     render: (_: any, { stock }: any) => (
@@ -59,18 +65,19 @@ export const columnsProList:any = [
         color={stock == 0 ? "red" : stock > 5 ? "green" : "warning"}
         key={stock >= 5 ? "geekblue" : "blue"}
       >
-        {stock == 0 ? "hết hàng" : stock > 5 ? "còn hàg" : "sắp hết"}
+        {stock == 0 ? `hết hàng (${stock})` : stock > 5 ? `còn hàg(${stock}) ` : `sắp hết (${stock}) `}
+
       </Tag>
     ),
   },
   {
-    title: "Category",
+    title: "CATEGORY",
     dataIndex: "categoryId",
     key: "categoryId",
-    render: (_: any, record: any) => <span>{record?.categoryId}</span>,
+    render: (_: any, record: any) => <Link className="text-color hover:text-red-700" to={`/admin/categories/${record?.categoryId?._id}`}>{record?.categoryId}</Link>,
   },
   {
-    title: "Action",
+    title: "ACTION",
     key: "action",
     render: (_: any, record: any) => (
       <Space size="middle">

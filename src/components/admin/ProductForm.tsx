@@ -17,16 +17,6 @@ const UploadCard = styled(Upload)`
         fill: var(--ant-primary-color);
     }
 `;
-const renderHeader = () => {
-    return (
-        <span className="ql-formats">
-            <button className="ql-bold" aria-label="Bold"></button>
-            <button className="ql-italic" aria-label="Italic"></button>
-            <button className="ql-underline" aria-label="Underline"></button>
-        </span>
-    );
-}
-const header = renderHeader();
 
 
 interface ProductFormProps {
@@ -41,13 +31,8 @@ interface ProductFormProps {
 type Props = {}
 
 const ProductForm = ({ fileList, form, onFinish, setFileList, onReset, edit = false, loading = false }: ProductFormProps) => {
-    // const { data: brands } = brandApi.useFetchBrandsListQuery();
     const [previewImage, setPreviewImage] = React.useState<string>("");
     const [previewTitle, setPreviewTitle] = React.useState<string>("");
-    const [text1, setText1] = React.useState('<div>Hello World!</div><div>PrimeReact <b>Editor</b> Rocks</div><div><br></div>');
-    // const { data: categories } = categoryApi.useFetchCategoriesListQuery();
-    // const { data: configurations } = configurationApi.useFetchConfigurationsListQuery();
-    // const { data: variants } = productApi.useFetchProductVariantsListQuery();
     const [previewVisible, setPreviewVisible] = React.useState<boolean>(false);
     const getBase64 = (file: any) => {
         return new Promise((resolve, reject) => {
@@ -59,7 +44,7 @@ const ProductForm = ({ fileList, form, onFinish, setFileList, onReset, edit = fa
     };
 
     const handleCancel = () => setPreviewVisible(false);
-  
+
     const handlePreview = async (file: any) => {
         if (!file.url && !file.preview) {
             file.preview = await getBase64(file.originFileObj);
@@ -91,9 +76,9 @@ const ProductForm = ({ fileList, form, onFinish, setFileList, onReset, edit = fa
         setFileList(files);
     };
 
-    const setText = (data:any) =>{
+    const setText = (data: any) => {
         console.log();
-        
+
     }
     return (
         <Form layout="vertical" form={form} onFinish={onFinish}>
@@ -124,10 +109,10 @@ const ProductForm = ({ fileList, form, onFinish, setFileList, onReset, edit = fa
                         <TabPane tab="Thông tin chung" key="globals">
                             <Card style={{ marginBottom: 16 }}>
 
-                                <Form.Item label="Giá tiền" name="price" rules={[{ required: true, message: "Vui lòng nhập thông tin" }]}>
+                                <Form.Item label="Giá tiền" name="cost" rules={[{ required: true, message: "Vui lòng nhập thông tin" }]}>
                                     <InputNumber placeholder="Nhập vào" style={{ width: "100%" }} />
                                 </Form.Item>
-                                <Form.Item label="Giá đã giảm" name="cost">
+                                <Form.Item label="Giá đã giảm" name="price">
                                     <InputNumber placeholder="Nhập vào" style={{ width: "100%" }} />
                                 </Form.Item>
                                 <Form.Item label="Số lượng trong kho" name="stock" rules={[{ required: true, message: "Vui lòng nhập thông tin" }]}>
@@ -160,10 +145,6 @@ const ProductForm = ({ fileList, form, onFinish, setFileList, onReset, edit = fa
                                 </Form.Item>
                             </Card>
                         </TabPane>
-                        <TabPane tab="Xem trước" key="productPreview">
-
-                        </TabPane>
-
                     </Tabs>
                 </Card>
                 <div className="col-12">
@@ -185,7 +166,8 @@ const ProductForm = ({ fileList, form, onFinish, setFileList, onReset, edit = fa
                         </div>
                     </Card>
                 </div>
-            </div>  </Form>
+            </div>
+        </Form>
     )
 }
 

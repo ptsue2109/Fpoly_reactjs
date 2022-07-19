@@ -29,7 +29,7 @@ function getItem(
 
 const items: MenuItem[] = [
   getItem(
-    <Link to="https://ant.design">Ant Design</Link>,
+    <Link to="/admin/dashboard">Thống kê</Link>,
     "link",
     <PieChartOutlined />
   ),
@@ -70,8 +70,8 @@ const Sidebar2: React.FC = () => {
         <div className="position-sticky pt-3">
           <Menu
             style={{ width: 256 }}
-            defaultSelectedKeys={["1"]}
-            defaultOpenKeys={["sub1"]}
+            defaultSelectedKeys={["link"]}
+            defaultOpenKeys={["link"]}
             items={items}
             mode="inline"
           />

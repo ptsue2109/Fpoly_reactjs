@@ -5,7 +5,6 @@ import styled from "styled-components";
 
 const Access = ({ data }: any) => {
   React.useEffect(() => {
-    console.log(data);
   }, []);
 
   return (

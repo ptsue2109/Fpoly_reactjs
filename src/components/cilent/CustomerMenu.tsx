@@ -2,15 +2,14 @@ import React from "react";
 import {
   TabletOutlined,
   LaptopOutlined,
-  MobileOutlined,
-  SettingOutlined,
-  WindowsOutlined,
+  MobileOutlined
 } from "@ant-design/icons";
-import { BsEarbuds ,BsSmartwatch} from "react-icons/bs";
-import {GrPlug} from  'react-icons/gr';
+import { BsEarbuds, BsSmartwatch } from "react-icons/bs";
+import { GrPlug } from 'react-icons/gr';
 import type { MenuProps } from "antd";
 import { Menu } from "antd";
-interface Props {}
+import { products } from "../../../db.json"
+interface Props { }
 
 function getItem(
   label: React.ReactNode,
@@ -27,11 +26,16 @@ function getItem(
     type,
   } as MenuItem;
 }
-
 type MenuItem = Required<MenuProps>["items"][number];
 
+
+const items2: MenuItem[] = products?.map((itemC:any, index:any) =>(
+  getItem(`${itemC?.categoryId?.cateName}`, index, <LaptopOutlined /> , [])
+))
+
+
 const items: MenuItem[] = [
-  getItem("Điện thoại",'1', <MobileOutlined />,[]),
+  getItem("Điện thoại", '1', <MobileOutlined />, []),
   getItem("Máy tính", "2", <LaptopOutlined />, []),
   getItem("Laptop", "sub3", <TabletOutlined />, []),
   getItem("Tai Nghe", "sub4", <BsEarbuds />, []),
