@@ -1,19 +1,19 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
-import Top_nav from "./components/Top_nav";
-import Header from "./components/Header";
 import Footer from "./components/Footer";
-interface Props {}
+import HeaderCom from "../HeaderCom";
+interface Props { }
 
 const CustomerLayout = (props: Props) => {
   return (
     <>
-      <Top_nav />
-      <Header/>
-     <div className="container">
-        <Outlet/>
-     </div>
-     {/* <Footer/> */}
+      <HeaderCom navBtnStatus={true} />
+      <div className="container mt-3">
+        <div className="mt-5">
+          <Outlet />
+        </div>
+      </div>
+      <Footer />
     </>
   );
 };

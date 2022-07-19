@@ -1,30 +1,34 @@
-import React from 'react'
-import CardProduct from '../components/CardProduct'
-import Sliders from '../components/Sliders'
-import { products } from "../../db.json";
-import {clearState} from "../app/stores/slices/authSlice"
-import { useAppDispatch } from '../app/stores/hooks';
-import { useNavigate } from 'react-router-dom';
-type Props = {}
+import React from "react";
+import CardProduct from "../components/CardProduct";
+import { useAppDispatch } from "../app/stores/hooks";
+import { useNavigate } from "react-router-dom";
+import { Card, Divider } from "antd";
+import { products, _access } from "../../db.json";
+import Access from "../components/cilent/Access";
+import styled from 'styled-components';
+import Navbar from "../components/themes/custommer/components/Navbar";
+type Props = {};
 
 const Home = (props: Props) => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
   React.useEffect(() => {
-    document.title = "NXB KIM DONG"
-
+    document.title = "NXB KIM DONG";
   }, []);
-  
-  return (
-    <div>
-      <Sliders />
-      <CardProduct data={products} />
-      <button onClick={() =>{
-         dispatch(clearState)
-      }}>LOgout</button>
-    </div>
-  )
-}
 
-export default Home
+  return (
+    <>
+      <Navbar sliderStatus={false}/>
+      <Card className="mt-5"><h2 className="mx-3 my-5">Điện thoại nổi bật</h2><CardProduct data={products} /></Card>
+      <Card className="w-full mt-5"><h2 className="mx-3 my-5">Sản phẩm bán chạy</h2><CardProduct data={products} /></Card>
+      <div className="border-black-custom">
+        <h2 className="mx-3 my-5">Phụ kiện</h2>
+        <Access data={_access} />
+      </div>
+    </>
+  );
+};
+
+export default Home;
+

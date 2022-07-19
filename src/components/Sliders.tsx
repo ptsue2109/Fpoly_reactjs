@@ -1,5 +1,5 @@
 import React from "react";
-import { sliders } from "../public/data.json";
+import { sliders } from "../../db.json";
 import Slider from "react-slick";
 type Props = {};
 
@@ -7,14 +7,14 @@ const Sliders = (props: Props) => {
     const settings = {
         dots: true,
         infinite: true,
-        speed: 1000,
+        speed: 800,
         slidesToShow: 1,
         slidesToScroll: 1,
         autoplay: true,
-        cssEase: "linear",
+        cssEase: "linear"
     };
     return (
-        <div>
+        <div className="shadow-2  h-full " >
             <Slider {...settings}>
                 {sliders &&
                     sliders.map((item, index) => (
@@ -22,7 +22,7 @@ const Sliders = (props: Props) => {
                             <img
                                 src={item?.image}
                                 alt=""
-                                className="h-30rem max-h-30rem w-full "
+                                className="h-20rem max-h-20rem w-full slick-vertical"
                             />
                         </div>
                     ))}

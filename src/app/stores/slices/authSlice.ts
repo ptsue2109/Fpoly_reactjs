@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { authAsyncLogin } from "./authThunk";
-import { AuthState } from "../../../public/types/user.type";
+import { AuthState } from "../../../types/user.type";
 import localStorage from "redux-persist/es/storage";
 
 const initialState: AuthState = {
