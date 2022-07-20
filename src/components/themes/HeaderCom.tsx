@@ -1,13 +1,46 @@
-import React from "react";
+
 import styled from "styled-components";
-import { SearchOutlined, WifiOutlined } from "@ant-design/icons";
-import { Button, Input } from "antd";
+import { SearchOutlined, DownOutlined } from "@ant-design/icons";
+import { Input, Dropdown, Menu, message, MenuProps, Space } from "antd";
 import { Link } from "react-router-dom";
+import { useAppDispatch, useAppSelector } from "../../app/stores/hooks";
 interface Props {
   navBtnStatus: boolean
 }
 
 const HeaderCom = ({ navBtnStatus }: Props) => {
+  const { userInfo } = useAppSelector((state) => state.authReducer);
+  const onClick: MenuProps['onClick'] = ({ key }) => {
+    if (key == "admin-db") return message.info(`Welcom to  ${key}`);
+  };
+  const submitE = () =>{
+    console.log('qweqwe');
+    
+  }
+  const menu = (
+    <Menu
+      onClick={onClick}
+      items={[
+        {
+          label: 'Profile',
+          key: '1',
+        },
+        {
+          label: (
+            <Link to="/admin">
+              Admin
+            </Link>
+          ),
+          key: 'admin-db',
+
+        },
+        {
+          label: 'Logout',
+          key: '3',
+        }
+      ]}
+    />
+  )
   const topNavArr = [
     {
       url: '#',
@@ -46,6 +79,7 @@ const HeaderCom = ({ navBtnStatus }: Props) => {
             size="large"
             placeholder="Enter keyword.."
             prefix={<SearchOutlined />}
+            onSubmit={submitE}
           />
         </div>
         {navBtnStatus == true ? (
@@ -57,14 +91,21 @@ const HeaderCom = ({ navBtnStatus }: Props) => {
                   <Link to={item?.url} className="top_nav-buttonBox">{item?.text}</Link>
                 </div>
               ))}
+              <Dropdown overlay={menu} className="cursor-pointer top_nav-button--div">
+                <Space>
+                  <div className="capitalize">{userInfo && userInfo?.username}</div>
+                  <DownOutlined />
+                </Space>
+              </Dropdown>
             </div>
-          
           </NavBtn>
         ) : null}
       </div>
     </>
   );
 };
+
+
 const WrapperInput = styled(Input)`
   border: none;
   border-radius: 5px;
@@ -73,11 +114,7 @@ const WrapperInput = styled(Input)`
 
 const NavBtn = styled.div`
   .top_nav-button--div{
-    
-    border-radius:5px;
-    box-shadow: 0px 1px 8px rgba(0, 0, 0, 0.08), 0px 3px 4px rgba(0, 0, 0, 0.1),
-    0px 1px 4px -1px rgba(0, 0, 0, 0.1);
-
+    border-radius: 5px;
     &:hover {
     box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.12),
       0px 4px 5px rgba(0, 0, 0, 0.14), 0px 2px 4px -1px rgba(0, 0, 0, 0.2);

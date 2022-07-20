@@ -5,25 +5,22 @@ import { Button } from "primereact/button";
 import { Divider } from "primereact/divider";
 import { Form, Input, message } from "antd";
 import { useAppDispatch } from "../../app/stores/hooks";
-import { authAsyncLogin } from "../../app/stores/slices/authThunk";
+import { authAsyncLogin } from "../../app/stores/thunks/authThunk";
 
-interface Props {user: any;}
+interface Props { user: any; }
 
-const Login = ({user}: Props) => {
+const Login = ({ user }: Props) => {
   const [form] = Form.useForm();
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  const onFinish =async (values: any) => {
-    console.log('values',values);
-    
+  const onFinish = async (values: any) => {
+    console.log('values', values);
     const { meta, payload } = await dispatch(authAsyncLogin(values));
-    console.log({ meta, payload } );
-    
     if (meta.requestStatus == "fulfilled") {
       message.success("Register success, waitt", 2, () => {
         setTimeout(() => {
-            navigate("/");
+          navigate("/");
         }, 3000);
       });
     } else {
@@ -61,7 +58,7 @@ const Login = ({user}: Props) => {
                 rules={[{ required: true, message: "Vui lòng nhập thông tin" }]}
                 style={{ flex: 1 }}
               >
-                <Input.Password placeholder="Nhập vào"  />
+                <Input.Password placeholder="Nhập vào" />
               </Form.Item>
 
               <div className="flex  justify-content-end mb-3">

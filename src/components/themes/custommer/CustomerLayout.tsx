@@ -7,7 +7,7 @@ interface Props { }
 const CustomerLayout = (props: Props) => {
   return (
     <>
-      <HeaderCom navBtnStatus={true} />
+      <HeaderCom navBtnStatus={true}/>
       <div className="container mt-3">
         <div className="mt-5">
           <Outlet />

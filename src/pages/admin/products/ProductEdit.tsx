@@ -1,10 +1,10 @@
 import React from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import { Form, Button } from "antd";
+import { Button, Form, message } from "antd";
 import ProductForm from "../../../components/admin/ProductForm";
-import { pageTitle } from '../../../ultils';
-import { products } from "../../../../db.json"
-interface Props { }
+import { pageTitle } from "../../../ultils";
+import { products } from "../../../../db.json";
+interface Props {}
 
 const ProductEdit = (props: Props) => {
   const [form] = Form.useForm();
@@ -12,12 +12,19 @@ const ProductEdit = (props: Props) => {
   const [fileList, setFileList] = React.useState<any[]>([]);
 
   const { id } = useParams();
-  const product = products.find(item => item._id === id);
+  const product = products.find((item) => item._id === id);
   React.useEffect(() => {
     document.title = `Admin | Edit ${product?.name}`;
     pageTitle(`Edit Product`);
-    form.setFieldsValue({ ...product, category: typeof product?.categoryId.cateName === "object" ? product?.categoryId._id : product?.categoryId.cateName });
-  }, []);
+    if(product){
+      setFileList(product?.image as any[]);
+      form.setFieldsValue({
+        ...product,
+        categoryId: product.categoryId && product.categoryId._id,
+        brandId: product.brandId && product.brandId._id,
+      });
+    }
+  }, [product]);
 
   const onFinish = async (values: any) => {
     console.log("values", values);
@@ -39,6 +46,7 @@ const ProductEdit = (props: Props) => {
         fileList={fileList}
         setFileList={setFileList}
         onReset={onReset}
+        edit={true}
       />
     </div>
   );

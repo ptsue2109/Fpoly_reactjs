@@ -41,11 +41,7 @@ const items: MenuItem[] = [
     getItem(<Link to="/admin/users"> Danh sách người dùng</Link>, "3"),
     getItem(<Link to="/admin/users/add"> Thêm người dùng</Link>, "4"),
   ]),
-  getItem("Quản lí danh mục", "sub3", <BarsOutlined />, [
-    getItem(<Link to="/admin/categories"> Danh sách danh mục</Link>, "5"),
-    getItem(<Link to="/admin/categories/add"> Thêm danh mục</Link>, "6"),
-  ]),
-  getItem("Quản lí slider", "sub4", <UserOutlined />, [
+  getItem("Quản lí danh mục", "sub4", <UserOutlined />, [
     getItem(<Link to="/admin/categories"> Danh sách slider</Link>, "7"),
     getItem(<Link to="/admin/categories/add"> Thêm slider</Link>, "8"),
   ]),
@@ -57,6 +53,10 @@ const items: MenuItem[] = [
   getItem("Quản lí slider", "sub6", <PictureOutlined />, [
     getItem(<Link to="/admin/sliders"> Danh sách slider</Link>, "12"),
     getItem(<Link to="/admin/sliders/add"> Thêm slider</Link>, "13"),
+  ]),
+  getItem("Quản lí thương hiệu", "sub7", <PictureOutlined />, [
+    getItem(<Link to="/admin/brands"> Danh sách thương hiệu</Link>, "14"),
+    getItem(<Link to="/admin/brands/add"> Thêm thương hiệu</Link>, "15"),
   ]),
 ];
 

@@ -1,19 +1,19 @@
 import React from "react";
 import ImageGallery from "react-image-gallery";
-import { products } from "../../../db.json";
 import { Link, useParams } from "react-router-dom";
 import { currencyFm } from "../../ultils";
 import { Tabs, Button, Breadcrumb, Card, Rate, Collapse,message } from "antd";
 import { ScrollPanel } from 'primereact/scrollpanel';
 import CardProduct from './../../components/CardProduct';
+import { useAppSelector} from './../../app/stores/hooks';
 type Props = {};
 
 const Detail = (props: Props) => {
   const { slug } = useParams();
+  const { products } = useAppSelector(state => state.homeReducer);
   const productDetail = products.find((item) => item.slug === slug);
-  React.useEffect(() => {
-    document.title = `${productDetail?.name}`;
-  }, []);
+  document.title = `${productDetail?.name}`;
+  
   const addToCart = () => {
     message.success('Thêm vào giỏ hàng thành công');
   };

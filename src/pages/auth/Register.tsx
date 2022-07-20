@@ -5,7 +5,7 @@ import { Button } from "primereact/button";
 import "./auth.css";
 import { Form, Input, message } from "antd";
 import { useAppDispatch } from "../../app/stores/hooks";
-import { authAsyncRegister } from "../../app/stores/slices/authThunk";
+import { authAsyncRegister } from "../../app/stores/thunks/authThunk";
 
 interface Props {
   user: any;

@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { authAsyncLogin } from "./authThunk";
+import { authAsyncLogin } from "../thunks/authThunk";
 import { AuthState } from "../../../types/user.type";
 import localStorage from "redux-persist/es/storage";
 
@@ -29,11 +29,7 @@ const authSlice = createSlice({
       state.isAuthenticated = true;
       state.userInfo = action.payload.user;
       state.accessToken = action.payload.token;
-
-      // state.userInfo = action.payload.user;
-      // state.accessToken = action.payload.token;
       state.refreshToken = action.payload.refreshToken;
-      // state.isAuthenticated = !!action.payload.accessToken;
     });
   },
 });

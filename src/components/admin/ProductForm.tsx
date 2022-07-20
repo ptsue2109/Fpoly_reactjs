@@ -2,6 +2,7 @@ import React from 'react'
 import styled from "styled-components";
 import { BsPlus } from "react-icons/bs";
 import { Button, Card, Form, FormInstance, Input, InputNumber, message, Modal, Select, Tabs, Upload } from "antd";
+import { categories, brands } from "../../../db.json";
 const { TextArea } = Input;
 const { TabPane } = Tabs;
 
@@ -118,22 +119,22 @@ const ProductForm = ({ fileList, form, onFinish, setFileList, onReset, edit = fa
                                 <Form.Item label="Số lượng trong kho" name="stock" rules={[{ required: true, message: "Vui lòng nhập thông tin" }]}>
                                     <InputNumber placeholder="Nhập vào" style={{ width: "100%" }} />
                                 </Form.Item>
-                                <Form.Item label="Danh mục" name="category" rules={[{ required: true, message: "Vui lòng nhập thông tin" }]}>
+                                <Form.Item label="Danh mục" name="categoryId" rules={[{ required: true, message: "Vui lòng nhập thông tin" }]}>
                                     <Select placeholder="Lựa chọn" allowClear showSearch optionFilterProp="children">
-                                        {/* {categories?.map((item) => (
-                                    <Select.Option key={item._id} value={item._id}>
-                                        {item.name}
-                                    </Select.Option>
-                                ))} */}
+                                        {categories?.map((item) => (
+                                            <Select.Option key={item._id} value={item._id}>
+                                                {item.cateName}
+                                            </Select.Option>
+                                        ))}
                                     </Select>
                                 </Form.Item>
-                                <Form.Item label="Thương hiệu" name="brand" rules={[{ required: true, message: "Vui lòng nhập thông tin" }]}>
+                                <Form.Item label="Thương hiệu" name="brandName" rules={[{ required: true, message: "Vui lòng nhập thông tin" }]}>
                                     <Select placeholder="Lựa chọn" allowClear showSearch optionFilterProp="children">
-                                        {/* {brands?.map((item) => (
-                                    <Select.Option key={item._id} value={item._id}>
-                                        {item.name}
-                                    </Select.Option>
-                                ))} */}
+                                        {brands?.map((item) => (
+                                            <Select.Option key={item._id} value={item._id}>
+                                                {item.brandName}
+                                            </Select.Option>
+                                        ))}
                                     </Select>
                                 </Form.Item>
 
