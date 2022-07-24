@@ -32,7 +32,6 @@ type Props = {}
 
 const BrandForm = ({ fileList, form, onFinish, setFileList, onReset, edit = false, loading = false }: BrandFormProps) => {
     const [previewImage, setPreviewImage] = React.useState<string>("");
-    const [previewTitle, setPreviewTitle] = React.useState<string>("");
     const [previewVisible, setPreviewVisible] = React.useState<boolean>(false);
     const getBase64 = (file: any) => {
         return new Promise((resolve, reject) => {
@@ -52,7 +51,6 @@ const BrandForm = ({ fileList, form, onFinish, setFileList, onReset, edit = fals
 
         setPreviewVisible(true);
         setPreviewImage(file.url || file.preview);
-        setPreviewTitle(file.name || file.url.substring(file.url.lastIndexOf("/") + 1));
     };
 
     const handleChange = async (data: any) => {
@@ -89,7 +87,7 @@ const BrandForm = ({ fileList, form, onFinish, setFileList, onReset, edit = fals
                             <UploadCard beforeUpload={() => false} listType="picture-card"  fileList={fileList} onPreview={handlePreview} onChange={handleChange}>
                                 {fileList.length >= 1 ? null : <BsPlus size={36} fill="#d9d9d9" />}
                             </UploadCard>
-                            <Modal visible={previewVisible} title={previewTitle} footer={null} onCancel={handleCancel}>
+                            <Modal visible={previewVisible}  footer={null} onCancel={handleCancel}>
                                 <img alt="example" style={{ width: "100%" }} src={previewImage} />
                             </Modal>
                         </Form.Item>

@@ -78,7 +78,7 @@ const CategoryList = (props: Props) => {
       key: index + 1,
       _id: item._id,
       cateName: item?.cateName,
-      image: item?.image,
+      image: item?.image[0]?.url,
       status: item?.status,
     };
   });

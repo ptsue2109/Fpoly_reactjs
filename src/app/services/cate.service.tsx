@@ -15,7 +15,8 @@ export const getAll = () => {
 }
 
 
-export const getProductByCate = (cateName: string | undefined) =>{
-    const url = `/categories/get-book-by-type/${cateName}`;
+export const getProductByCate = (slug: string | undefined) =>{
+    const url = `/categories/get-detail-by-slug/${slug}`;
     return BaseURL.get(url)
 }
+

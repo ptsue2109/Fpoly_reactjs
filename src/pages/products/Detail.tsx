@@ -51,8 +51,8 @@ const Detail = (props: Props) => {
               items={
                 productDetail?.image.map((item: any) => {
                   return {
-                    original: item,
-                    thumbnail: item,
+                    original: item?.url ,
+                    thumbnail: item?.url,
                   };
                 }) || []
               }

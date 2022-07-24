@@ -74,7 +74,7 @@ const BrandList = (props: Props) => {
       key: index + 1,
       _id: item._id,
       brandName: item?.brandName,
-      image: item?.image,
+      image: item?.image[0]?.url!,
       status: item?.status
     }
   });

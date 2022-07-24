@@ -3,18 +3,22 @@ import { Link, useNavigate } from "react-router-dom";
 import { Form, Button } from "antd";
 import { pageTitle } from '../../../ultils'
 import BrandForm from '../../../components/admin/BrandForm';
+import { useAppDispatch, useAppSelector } from './../../../app/stores/hooks';
+import { AsyncCreateBrand } from "../../../app/stores/thunks/brandThunk"
+
 type Props = {}
 
 const BrandAdd = (props: Props) => {
   const [form] = Form.useForm();
-  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
   const [fileList, setFileList] = React.useState<any[]>([]);
   React.useEffect(() => {
     document.title = "Admin | Add Brand"
     pageTitle('Add Brand')
   }, []);
-  const onFinish = async (values: any) => {
-    console.log("values", values);
+  const onFinish = async (data: any) => {
+    data.image= fileList;
+    dispatch(AsyncCreateBrand(data))
   };
 
   const onReset = () => {

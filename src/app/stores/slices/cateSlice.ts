@@ -1,5 +1,6 @@
 import {
-  FetchCateList
+  FetchCateList,
+  fetchAsyncCategorySelected
 } from "../thunks/cateThunk";
 import { createSlice } from "@reduxjs/toolkit";
 
@@ -35,6 +36,19 @@ const categorySlice = createSlice({
       state.errorMessage = action.payload;
     });
 
+    // get product by catename
+    builder.addCase(fetchAsyncCategorySelected.pending, (state) => {
+      state.isFetching = true;
+    });
+    builder.addCase(fetchAsyncCategorySelected.fulfilled, (state, action) => {
+      state.isFetching = false;
+      state.category = action.payload.category;
+      state.products = action.payload.products;
+    });
+    builder.addCase(fetchAsyncCategorySelected.rejected, (state, action) => {
+      state.isFetching = false;
+      state.errorMessage = action.payload;
+    });
   },
 });
 

@@ -1,5 +1,5 @@
 import React from 'react'
-import Sliders from '../../../Sliders'
+import Sliders from '../../../cilent/Sliders'
 import CustomerMenu from '../../../cilent/CustomerMenu';
 
 interface Props {

@@ -2,7 +2,7 @@ import React from 'react'
 import styled from "styled-components";
 import { BsPlus } from "react-icons/bs";
 import { Button, Card, Form, FormInstance, Input, InputNumber, message, Modal, Select, Tabs, Upload } from "antd";
-import { categories, brands } from "../../../db.json";
+import { useAppSelector } from '../../app/stores/hooks';
 const { TextArea } = Input;
 const { TabPane } = Tabs;
 
@@ -29,12 +29,13 @@ interface ProductFormProps {
     edit?: boolean;
     loading?: boolean;
 }
-type Props = {}
 
 const ProductForm = ({ fileList, form, onFinish, setFileList, onReset, edit = false, loading = false }: ProductFormProps) => {
+    const { brands, categories } = useAppSelector(state => state.homeReducer)
+
     const [previewImage, setPreviewImage] = React.useState<string>("");
-    const [previewTitle, setPreviewTitle] = React.useState<string>("");
     const [previewVisible, setPreviewVisible] = React.useState<boolean>(false);
+
     const getBase64 = (file: any) => {
         return new Promise((resolve, reject) => {
             const reader = new FileReader();
@@ -44,7 +45,7 @@ const ProductForm = ({ fileList, form, onFinish, setFileList, onReset, edit = fa
         });
     };
 
-    const handleCancel = () => setPreviewVisible(false);
+    const handleCancel = () => setPreviewVisible(true);
 
     const handlePreview = async (file: any) => {
         if (!file.url && !file.preview) {
@@ -53,11 +54,10 @@ const ProductForm = ({ fileList, form, onFinish, setFileList, onReset, edit = fa
 
         setPreviewVisible(true);
         setPreviewImage(file.url || file.preview);
-        setPreviewTitle(file.name || file.url.substring(file.url.lastIndexOf("/") + 1));
     };
 
     const handleChange = async (data: any) => {
-        const accepts = ["image/gif", "image/jpeg", "image/png"];
+        const accepts = ["image/gif", "image/jpeg", "image/png","image/webp"];
         const extensionFile = accepts.map((item) => item.split("image/")[1]);
         if (data.file.size / 1024 / 1024 > 2) {
             message.error("Kích thước ảnh tối đa 2MB");
@@ -73,26 +73,21 @@ const ProductForm = ({ fileList, form, onFinish, setFileList, onReset, edit = fa
             }
             return item;
         });
-
         setFileList(files);
     };
 
-    const setText = (data: any) => {
-        console.log();
-
-    }
     return (
         <Form layout="vertical" form={form} onFinish={onFinish}>
             <div className="grid">
                 <Card style={{ marginBottom: 16 }} className="col-5">
                     <>
                         <Form.Item label="Ảnh chi tiết" style={{ alignItems: "left" }}>
-                            <UploadCard beforeUpload={() => false} listType="picture-card" multiple fileList={fileList} onPreview={handlePreview} onChange={handleChange}>
+                            <UploadCard beforeUpload={() => false} listType="picture-card" multiple fileList={fileList}
+                                onChange={handleChange}  onPreview={handlePreview} >
                                 {fileList.length >= 8 ? null : <BsPlus size={36} fill="#d9d9d9" />}
                             </UploadCard>
                             <small>(Tối đa 8 ảnh, ảnh đầu tiên sẽ là ảnh chính thức của sản phẩm)</small>
-
-                            <Modal visible={previewVisible} title={previewTitle} footer={null} onCancel={handleCancel}>
+                            <Modal visible={previewVisible}  footer={null} onCancel={handleCancel}>
                                 <img alt="example" style={{ width: "100%" }} src={previewImage} />
                             </Modal>
                         </Form.Item>
@@ -128,7 +123,7 @@ const ProductForm = ({ fileList, form, onFinish, setFileList, onReset, edit = fa
                                         ))}
                                     </Select>
                                 </Form.Item>
-                                <Form.Item label="Thương hiệu" name="brandName" rules={[{ required: true, message: "Vui lòng nhập thông tin" }]}>
+                                <Form.Item label="Thương hiệu" name="brandId" rules={[{ required: true, message: "Vui lòng nhập thông tin" }]}>
                                     <Select placeholder="Lựa chọn" allowClear showSearch optionFilterProp="children">
                                         {brands?.map((item) => (
                                             <Select.Option key={item._id} value={item._id}>
@@ -138,7 +133,7 @@ const ProductForm = ({ fileList, form, onFinish, setFileList, onReset, edit = fa
                                     </Select>
                                 </Form.Item>
 
-                                <Form.Item label="Nổi bật" name="isFeatured">
+                                <Form.Item label="Nổi bật" name="isFeature">
                                     <Select placeholder="Lựa chọn" allowClear showSearch optionFilterProp="children">
                                         <Select.Option value={false}>Sản phẩm thường</Select.Option>
                                         <Select.Option value={true}>Nổi bật</Select.Option>

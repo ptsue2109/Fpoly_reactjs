@@ -1,29 +1,40 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Form, Button } from "antd";
+import { Form, Button, message } from "antd";
 import ProductForm from "../../../components/admin/ProductForm";
-import { pageTitle } from '../../../ultils'
+import { pageTitle } from "../../../ultils";
+import { useAppDispatch, useAppSelector } from "./../../../app/stores/hooks";
+import { AsyncCreateProduct } from "../../../app/stores/thunks/productThunk";
 interface Props { }
 
 const ProductAdd = (props: Props) => {
   const [form] = Form.useForm();
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
   const [fileList, setFileList] = React.useState<any[]>([]);
-
+  const { errorMessage } = useAppSelector((state) => state.productReducer);
   React.useEffect(() => {
     document.title = "Admin | Add Product";
-    pageTitle('Thêm sản phẩm')
+    pageTitle("Thêm sản phẩm");
   }, []);
 
-  const onFinish = async (values: any) => {
-    console.log("values", values);
+  const onFinish = async (data: any) => {
+    data.image = fileList;
+    dispatch(AsyncCreateProduct(data))
+
+      .then(() => {
+        message.success("Update product success", 2, () => {
+          navigate("/admin/products");
+        });
+      })
+      .catch(() => message.error(errorMessage));
   };
 
   const onReset = () => {
     form.resetFields();
     setFileList([]);
   };
-  
+
   return (
     <div>
       <Button type="primary" style={{ marginBottom: "20px" }}>

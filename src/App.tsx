@@ -28,6 +28,11 @@ const UserEdit = React.lazy(() => import("./pages/admin/users/UserEdit"));
 const SliderList = React.lazy(() => import("./pages/admin/sliders/SlidersList"));
 const SliderAdd = React.lazy(() => import("./pages/admin/sliders/SlidersAdd"));
 const SliderEdit = React.lazy(() => import("./pages/admin/sliders/SlidersEdit"));
+const ProductByCate = React.lazy(() => import("./pages/products/ProductCate"));
+const ProductBrand = React.lazy(() => import('./pages/products/ProductBrand'));
+const ProductListClient = React.lazy(() => import("./pages/products/ProuductList"))
+
+
 function App() {
   const dispatch = useAppDispatch();
   const { userInfo } = useAppSelector((state) => state.authReducer);
@@ -42,6 +47,9 @@ function App() {
           <Route index element={<Home />} />
           <Route path="tim-kiem/" element={<Search />} />
           <Route path="products/:slug" element={<Detail />} />
+          <Route path="products" element={<ProductListClient />} />
+          <Route path="categories/:slug" element={<ProductByCate />} />
+          <Route path="brands/:slug" element={<ProductBrand />} />
         </Route>
 
         <Route path="admin" element={<AdminLayout />}>

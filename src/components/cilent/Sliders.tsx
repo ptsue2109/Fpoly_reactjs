@@ -1,6 +1,6 @@
 import React from "react";
 import Slider from "react-slick";
-import { useAppSelector } from "../app/stores/hooks";
+import { useAppSelector } from "../../app/stores/hooks";
 type Props = {};
 
 const Sliders = (props: Props) => {
@@ -23,7 +23,7 @@ const Sliders = (props: Props) => {
           sliders.map((item, index) => (
             <div key={index}>
               <img
-                src={item?.image}
+                src={item?.image[0]?.url}
                 alt=""
                 className="h-20rem max-h-20rem w-full slick-vertical"
               />
