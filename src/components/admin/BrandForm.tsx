@@ -54,7 +54,7 @@ const BrandForm = ({ fileList, form, onFinish, setFileList, onReset, edit = fals
     };
 
     const handleChange = async (data: any) => {
-        const accepts = ["image/gif", "image/jpeg", "image/png"];
+        const accepts = ["image/gif", "image/jpeg", "image/png","image/webp"];
         const extensionFile = accepts.map((item) => item.split("image/")[1]);
         if (data.file.size / 1024 / 1024 > 2) {
             message.error("Kích thước ảnh tối đa 2MB");

@@ -14,7 +14,6 @@ const HeaderCom = ({ navBtnStatus }: Props) => {
     if (key == "admin-db") return message.info(`Welcom to  ${key}`);
   };
   const submitE = () =>{
-    console.log('qweqwe');
     
   }
   const menu = (
@@ -68,8 +67,8 @@ const HeaderCom = ({ navBtnStatus }: Props) => {
         <div className="flex-0 flex justify-items-between gap-4 ml-7 px-3">
           <Link to={"/"}>
             <img
-              src="https://res.cloudinary.com/asm-ph13269/image/upload/v1651872786/logopreload_dujfxg.png"
-              className="max-w-2rem"
+              src="https://cdn.sforum.vn/sforum/wp-content/uploads/2021/08/logo_cps-1.png"
+              className="max-w-10rem"
               alt=""
             />
           </Link>
@@ -93,7 +92,7 @@ const HeaderCom = ({ navBtnStatus }: Props) => {
               ))}
               <Dropdown overlay={menu} className="cursor-pointer top_nav-button--div">
                 <Space>
-                  <div className="capitalize">{userInfo && userInfo?.username}</div>
+                  <div className="capitalize">{userInfo ? userInfo?.username : 'user'}</div>
                   <DownOutlined />
                 </Space>
               </Dropdown>

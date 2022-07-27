@@ -10,14 +10,13 @@ const ProductCate = (props: Props) => {
   const dispatch = useAppDispatch();
   const { slug } = useParams();
   const {  category , products} = useAppSelector((state) => state.cateReducer);
-
   React.useEffect(() => {
     dispatch(fetchAsyncCategorySelected(slug))
   }, [dispatch, slug]);
 
   return (
     <>
-      <Card className="w-full mt-5"><CardProduct data={products} category={category}/></Card>
+      <Card className="w-full mt-5"><CardProduct data={products}/></Card>
 
     </>
   )

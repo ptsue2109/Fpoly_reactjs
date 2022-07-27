@@ -141,7 +141,7 @@ const ProductList = (props: DataType) => {
       isFeature: item.isFeature,
       cost: item.cost,
       image: item.image[0]?.url,
-      categoryId: item?.categoryId?.cateName
+      categoryId: item?.categoryId?.cateName,
       brandId: item?.brandId?.brandName,
       stock: item?.stock,
     };
