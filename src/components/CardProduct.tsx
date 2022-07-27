@@ -12,9 +12,6 @@ const CardProduct = ({ data}: any) => {
 
         <>
           <div className="flex justify-content-between">
-            {/* <div className="">
-              <h3> {data?.categoryId.cateName ?? undefined}</h3>
-            </div> */}
             <div className="text-color">
               {data && data.length > 1 ? (
                 <Products>
